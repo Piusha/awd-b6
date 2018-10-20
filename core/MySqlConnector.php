@@ -1,13 +1,37 @@
 <?php
-namespace MySqlConnector;
-class Conector{
+namespace Core\MySqlConnector;
 
-	private $con = "CON";
+class Connector{
+
+	private $con = null;
+
+	protected $table_name = "";
+
 	function __construct(){
 		echo "This is MySqlConnector<br/>";
 	}
+	private function prepareConnection(){
 
-	public function getConnetion(){
-		echo "ACCESS INSIDE THE CLASS". $this->con;
+		echo "PREPARING THE CONNECTION ..... <br/>";
+
+		$this->con = "MYSQL_CONNECTION";
+	}
+
+	protected function getConnection(){
+
+		$this->prepareConnection();
+
+		return $this->con;
+	}
+
+	public function getDBQuery(){
+
+
+		return "SELECT * FROM {$this->table_name}";
+	}
+
+	public function getTableName(){
+		
+		return $this->table_name;
 	}
 }
