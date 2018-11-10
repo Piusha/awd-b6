@@ -2,46 +2,44 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+require_once 'AutoLoader.php';
 
-//include_once('./core/MongoConnector.php');
-include_once('./core/MySqlConnector.php');
+Framework\AutoLoader::requires('framework/config');
+Framework\AutoLoader::requires('framework/core');
+Framework\AutoLoader::requires('framework/models');
+$userObj = new Model\User();
+$userList = $userObj->getAllUsers();
 
-//include Model classes
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>First Name</td>
+			<td>Last Name</td>
+			<td>Email</td>
+			<td>Gender</td>
+			<td>Address</td>
+		</tr>
 
-include_once('./models/User.php');
-include_once('./models/Items.php');
-
-// $mysql = new MySqlConnector\Conector();
-// //$mongo = new MongoConnector\Conector();
-
-// ////$mysql->con = "MYSQL CONNECTION  ";
-
-// $mysql->getConnetion();
-// echo "<br/>";
-
-// //echo "OUTSIDE THE CLASS  ".$mysql->con;
-
-
-$user = new Model\User();
-
-echo "<br/>";
-echo "<br/>";
-echo $user->getDBQuery();
-
-
-echo "<br/>";
-echo "<br/>";
-echo $user->getTableName();
-//echo $user->getConnection();
-//echo "<br/>";
-$items = new Model\Items();
-
-echo "<br/>";
-echo "<br/>";
-echo $items->getDBQuery();
-
-
-echo "<br/>";
-echo "<br/>";
-echo $items->getTableName();
-
+		
+		<?php  foreach ($userList as $user):?>
+			<tr>
+				<td><?php echo $user['first_name'] ?></td>
+				<td><?php echo $user['last_name'] ?></td>
+				<td><?php echo $user['email'] ?></td>
+				<td><?php echo $user['gender'] ?></td>
+				<td><?php echo $user['address'] ?></td>
+			
+			</tr>
+		<?php  endforeach ?>
+	</table>
+</body>
+</html>
