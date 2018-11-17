@@ -1,13 +1,22 @@
 <?php
 namespace Controller;
+use Core\Controller;
 
-class HomeController{
+class HomeController extends Controller{
 
 
-	// public function __construct(){
-	// 	echo "THIS HomeController";
-	// }
+	public function __construct(){
+		parent::__construct();
+	}
 	public function index(){
-		echo 'this is Home index';
+		
+
+		$this->render('home/index');
+	}
+
+	public function getAll(){
+		
+
+		$this->render('home/getAll');
 	}
 }
