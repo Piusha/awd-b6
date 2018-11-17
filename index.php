@@ -3,19 +3,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once 'Core/AutoLoader.php';
+
+
 Core\AutoLoader::requires('Config');
+Core\AutoLoader::requires('Lib');
+Core\AutoLoader::requires('Core');
+
+Core\AutoLoader::requires(CONTROLLER_PATH);
 
 
-$routs = $_GET['url'];
-
-$explodedUrl = explode('/',$routs);
-echo "<pre>";
-print_r($explodedUrl);
-
-// 
-// Framework\AutoLoader::requires('framework/core');
-// Framework\AutoLoader::requires('framework/models');
-// $userObj = new Model\User();
-// $userList = $userObj->getAllUsers();
-
+new Core\Bootstrap();
 ?>

@@ -3,7 +3,7 @@ namespace Core;
 
 class AutoLoader{
 
-    private static $omitedFiles = ['.','..'];
+    private static $omitedFiles = ['.','..','AutoLoader.php'];
     /**
      * Load Models 
      *
