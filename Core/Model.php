@@ -25,11 +25,21 @@ abstract class Model extends MySqlConnection{
 
 
 
+	protected function where($where){
+
+	
+		if($where != null){
+            $this->where = "WHERE {$where}";
+        }
+        
+        return $this;
+	}
 	private function prepareSelectQuery(){
 
 		$query =  "SELECT  
                 {$this->select}  FROM  
-                {$this->table} {$this->where}";
+				{$this->table} {$this->where}";
+				
         return $query;
 	}
 

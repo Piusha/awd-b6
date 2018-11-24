@@ -5,6 +5,7 @@ abstract class View  {
 
 	protected $layout = null;
 	private $viewName =  null;
+
 	
 	public function render($viewName){
 

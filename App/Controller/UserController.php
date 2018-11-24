@@ -2,8 +2,9 @@
 namespace Controller;
 
 use Model\User;
+use Core\Controller;
 
-class UserController{
+class UserController extends Controller{
 
 
 	private $user = null;
@@ -11,14 +12,12 @@ class UserController{
 		$this->user = new User();
 	}
 	public function index(){
-
-
-		echo "<pre>";
-		print_r($this->user->getALlUsers());
-		//echo 'this is UserController INDEX';
+		
+		$this->view->users = $this->user->getALlUsers();
+		$this->render('user/index');
 	}
 
-	public function list($id){
-		echo "this is list function---> $id";
+	public function findById($id){
+		print_r($this->user->getUserById($id));
 	}
 }
