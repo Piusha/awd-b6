@@ -12,3 +12,5 @@ https://getcomposer.org/download/
 ## Install Laravel
 
 https://laravel.com/docs/5.7
+
+`$ composer create-project --prefer-dist laravel/laravel admin_panel`
