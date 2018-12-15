@@ -15,7 +15,7 @@
 				e.preventDefault();
 				Entry.BaseModule.post({
 					method:'POST',
-					action:'api/sign-up',
+					url:'/api/sign-up',
 					data:Entry.BaseModule.serializeObject($(this)),
 					dataType:"JSON"
 				}).onSuccess(function(result){

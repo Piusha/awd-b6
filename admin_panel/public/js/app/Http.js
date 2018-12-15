@@ -4,8 +4,7 @@ function Http(){
 
 Http.prototype.post = function(option){
 
-	console.log(option)
-	this.out = $.ajax(option)
+	this.out = $.ajax(option);
 	return this;
 }
 Http.prototype.onSuccess = function(callBack){
