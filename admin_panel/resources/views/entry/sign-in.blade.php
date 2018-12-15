@@ -36,3 +36,12 @@
 	</div>
 </div>
 @endsection
+
+@section('js')
+
+<script type="text/javascript" src="/js/app/Http.js"></script>
+<script type="text/javascript" src="/js/app/entry.js"></script>
+<script type="text/javascript">
+	$.entry();
+</script>
+@endsection
