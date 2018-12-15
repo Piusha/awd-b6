@@ -11,4 +11,5 @@
 |
 */
 
-Route::get('/', 'Home\HomeController@index');
+Route::get('/', 'Entry\EntryController@sign_in');
+Route::get('/sign-up', 'Entry\EntryController@sign_up');

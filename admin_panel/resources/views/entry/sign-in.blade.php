@@ -30,7 +30,7 @@
 
 			<div class="already">
 				<p>Don't have an account yet?</p>
-				<a href="signup.html">Sign Up</a>
+				<a href="/sign-up">Sign Up</a>
 			</div>
 		</div>
 	</div>
