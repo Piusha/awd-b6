@@ -58,5 +58,43 @@ class EntryController extends Controller
 	}
 
 
+	public function doSignIn(Request $request) {
+		
+		$user = $this->user->getUserByEmail($request->email);
+		
+		if(! $user){
+
+			return response([
+				'status' => 'error',
+				'error' => 'Cannot find User in the system'
+			],400);
+		}
+
+
+		if($user->password !== $request->password){
+			
+			return response([
+				'status' => 'error',
+				'error' => 'Invalid Password'
+			],400);
+		}
+
+		$user->token = $this->user->saveToken($user);
+
+		return response([
+			'status' => 'success',
+			'user' => $user
+		],200);
+	}
+
+
+	public function getMyProfile(){
+		return response([
+			'status' => 'success',
+			'user' => []
+		],200);
+	}
+
+
 
 }

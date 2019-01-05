@@ -18,3 +18,7 @@ use Illuminate\Http\Request;
 // });
 
 Route::post('/sign-up','Entry\EntryController@doSignUp');
+
+Route::post('/sign-in','Entry\EntryController@doSignIn');
+
+Route::get('/profile','Entry\EntryController@getMyProfile');
