@@ -4,13 +4,17 @@ namespace App\Http\Controllers\Entry;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Model\User;
-use App\Http\Model\UserToken;
+use App\Repository\User\iUserRepository;
 
 class EntryController extends Controller
 {
 	//
 	
+	private $user = null;
+	function __construct(iUserRepository $user){
+
+		$this->user = $user;
+	}
 	public function sign_up(){
 
 		return view('entry.sign-up');
@@ -24,40 +28,25 @@ class EntryController extends Controller
 	public function doSignUp(Request $request){
 	
 
+		if($this->user->getUserByEmail($request->email)){
 
-		//check email is exist
-
-		$existUser = User::where('email',$request->email)->first();
-
-		if($existUser){
 			return response([
 				'status' => 'error',
-				'error' => 'User already exist in our system'
+				'error' => 'User Already exist in the system'
 			],400);
 		}
 
 
 
-		$user = new User();
-		$user->full_name = $request->full_name;
-		$user->email = $request->email;
-		$user->password = $request->password;
+		$newUser = $this->user->create($request);
 
-		$savedUser = $user->save();
+		if(! empty($newUser)) {
 
-		if($savedUser){
-
-			$userToken = new UserToken();
-			$token = time();
-			$userToken->user_id = $user->id;
-			$userToken->token = $token;
-			$userToken->save();
-			
-			$user->token = $token;
+			$newUser->token = $this->user->saveToken($newUser);
 
 			return response([
 				'status' => 'success',
-				'user' => $user
+				'user' => $newUser
 			],200);
 		}
 
@@ -65,8 +54,6 @@ class EntryController extends Controller
 			'status' => 'error',
 			'error' => 'Error While adding user to the system'
 		],400);
-
-
 		
 	}
 
