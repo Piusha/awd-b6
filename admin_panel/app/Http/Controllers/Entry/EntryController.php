@@ -88,10 +88,10 @@ class EntryController extends Controller
 	}
 
 
-	public function getMyProfile(){
+	public function getMyProfile(Request $request){
 		return response([
 			'status' => 'success',
-			'user' => []
+			'user' => $request->loggedUser
 		],200);
 	}
 
